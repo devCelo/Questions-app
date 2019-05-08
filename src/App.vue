@@ -4,7 +4,9 @@
     <b-container>
       <b-row>
         <b-col>
-          <questionBox />
+          <questionBox
+          :currentQuestion="questions[index]"
+          />
         </b-col>
       </b-row>
     </b-container>
@@ -23,7 +25,8 @@ export default {
   },
   data() {
     return {
-      questions: []
+      questions: [],
+      index: 0
     }
   },
 mounted: function() {
