@@ -21,11 +21,23 @@ export default {
     Header,
     questionBox
   },
+  data() {
+    return {
+      questions: []
+    }
+  },
 mounted: function() {
-  fetch('https://opentdb.com/api.php?amount=10'), {
-    method: "get"
-  }
-},
+  fetch('https://opentdb.com/api.php?amount=15&difficulty=medium&type=multiple', {
+    method: 'get'
+  })
+  .then((response) => {
+  // eslint-disable-next-line
+  return response.json()
+  })
+  .then((jsonData) => {
+    this.questions = jsonData.results
+  })
+}
 }
 </script>
 
