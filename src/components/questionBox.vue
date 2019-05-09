@@ -1,3 +1,4 @@
+/* eslint-disable */
 <template>
   <div class="question-box-container">
   <b-jumbotron>
@@ -8,19 +9,26 @@
 
      <hr class="my-4">
 
-     <p>
-      Respostas
+     <p v-for="(answer, index) in answers" :key="answer">
+
      </p>
 
      <b-button variant="primary" href="#">Submit</b-button>
-     <b-button variant="success" href="#">Next</b-button>
+     <b-button variant="success" href="#" @click="next" >Next</b-button>
   </b-jumbotron>
 </div>
 </template>
 <script>
 export default {
   props: {
-    currentQuestion: Object
+    currentQuestion: Object,
+    next: Function
+  },
+  computed: {
+    answers() {
+      let answers = [...currentQuestion.incorrect_answers]
+      return answers.push(currentQuestion.correct_answer )
+    }
   }
 }
 </script>
