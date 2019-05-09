@@ -25,6 +25,8 @@
 </template>
 
 <script>
+import _ from 'lodash'
+
 export default {
   props: {
     currentQuestion: Object,
@@ -32,7 +34,8 @@ export default {
   },
   data() {
     return {
-      selectedIndex: null
+      selectedIndex: null,
+      shuffledAnswers: []
     }
   },
   computed: {
@@ -42,14 +45,23 @@ export default {
       return answers
     }
   },
+  watch: {
+    currentQuestion: {
+      immediate: true,
+      handler() {
+        this.selectedIndex = null
+        this.shuffleAnswers()
+      }
+    }
+  },
   methods: {
     selectedAnswer(index) {
       this.selectedIndex = index
+    },
+    shuffleAnswers() {
+      let answers = [...this.currentQuestion.incorrect_answers, this.currentQuestion.correct_answer]
+      this.shuffledAnswers = _.shuffle(answers)
     }
-  },
-mounted() {
-  // eslint-disable-next-line
-  console.log(this.currentQuestion)
   }
 }
 </script>
