@@ -6,3 +6,65 @@
 .nav a {
   color: white;
 }
+
+.lead {
+  margin-bottom: 25px;
+  font-weight: bold;
+}
+
+.list-group {
+  margin-bottom: 25px;
+}
+
+.list-group-item {
+  background: transparent;
+  border-bottom: 1px solid lightgray;
+  border-left: 3px solid black;
+  cursor: pointer;
+}
+
+.list-group-item:hover {
+  background: lightgray;
+  border-left: 3px solid lightgreen;
+  transition: ease 0.3s;
+}
+
+.selected {
+  background: black;
+  border-left: 3px solid green;
+  color: white;
+  font-weight: bold;
+  transition: ease 0.3s;
+}
+
+.correct {
+  background: lightgreen;
+  color: black;
+}
+
+.incorrect {
+  background: red;
+}
+
+.jumbotron {
+  background: transparent;
+  border: 1px solid lightgray;
+}
+
+.btn {
+  background: lightgray;
+  border: none;
+  color: black;
+}
+
+.btn:hover{
+  background: white;
+  color: black;
+  border-bottom: 1px solid black;
+}
+
+.btn-primary {
+  margin-right: 15px;
+  background: black;
+  color: white;
+}

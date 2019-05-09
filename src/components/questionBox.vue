@@ -1,28 +1,39 @@
 
 <template>
   <div class="question-box-container">
-  <b-jumbotron>
+    <b-jumbotron>
+       <template slot="lead">
+         {{ currentQuestion.question}}
+       </template>
 
-     <template slot="lead">
-       {{ currentQuestion.question}}
-     </template>
+        <b-list-group>
+          <b-list-group-item
+          v-for="(answer, index) in answers"
+          :key="index"
+          @click="selectedAnswer(index)"
+          :class="[selectedIndex === index ? 'selected' : '' ]"
+          >
 
-     <hr class="my-4">
+            {{ answer }}
+          </b-list-group-item>
+        </b-list-group>
 
-     <p v-for="(answer, index) in answers" :key="index">
-       {{ answer }}
-     </p>
-
-     <b-button variant="primary" href="#">Submit</b-button>
-     <b-button variant="success" href="#" @click="next" >Next</b-button>
-  </b-jumbotron>
-</div>
+       <b-button variant="primary" href="#">Submit</b-button>
+       <b-button variant="success" href="#" @click="next" >Next</b-button>
+    </b-jumbotron>
+  </div>
 </template>
+
 <script>
 export default {
   props: {
     currentQuestion: Object,
     next: Function
+  },
+  data() {
+    return {
+      selectedIndex: null
+    }
   },
   computed: {
     answers() {
@@ -31,9 +42,14 @@ export default {
       return answers
     }
   },
+  methods: {
+    selectedAnswer(index) {
+      this.selectedIndex = index
+    }
+  },
 mounted() {
   // eslint-disable-next-line
   console.log(this.currentQuestion)
-}
+  }
 }
 </script>
