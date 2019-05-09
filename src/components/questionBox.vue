@@ -18,8 +18,15 @@
           </b-list-group-item>
         </b-list-group>
 
-       <b-button variant="primary" href="#">Submit</b-button>
-       <b-button variant="success" href="#" @click="next" >Next</b-button>
+       <b-button
+       variant="primary"
+       @click="submitAnswer"
+       >Submit</b-button>
+       <b-button
+       variant="success"
+       @click="next">
+       Next
+     </b-button>
     </b-jumbotron>
   </div>
 </template>
@@ -28,7 +35,8 @@
 export default {
   props: {
     currentQuestion: Object,
-    next: Function
+    next: Function,
+    increment: Function
   },
   data() {
     return {
@@ -45,6 +53,14 @@ export default {
   methods: {
     selectedAnswer(index) {
       this.selectedIndex = index
+    },
+    submitAnswer() {
+      let isCorrect = false
+
+      if(this.selectedIndex == this.correctIndex) {
+        isCorrect = true
+      }
+      this.increment(isCorrect)
     }
   },
 mounted() {
