@@ -1,19 +1,3 @@
-<template>
-  <div id="app">
-    <Header />
-    <b-container>
-      <b-row>
-        <b-col>
-          <questionBox
-          :currentQuestion="questions[index]"
-          :nextQuestion="next"
-          />
-        </b-col>
-      </b-row>
-    </b-container>
-  </div>
-</template>
-
 <script>
 import Header from './components/header.vue'
 import questionBox from './components/questionBox.vue'
@@ -49,6 +33,24 @@ mounted: function() {
 }
 }
 </script>
+
+<template>
+  <div id="app">
+    <Header />
+    <b-container>
+      <b-row>
+        <b-col>
+          <questionBox
+          :currentQuestion="questions[index]"
+          :next="next"
+          />
+        </b-col>
+      </b-row>
+    </b-container>
+  </div>
+</template>
+
+
 
 <style>
 #app {

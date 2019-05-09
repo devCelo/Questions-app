@@ -1,4 +1,4 @@
-/* eslint-disable */
+
 <template>
   <div class="question-box-container">
   <b-jumbotron>
@@ -9,8 +9,8 @@
 
      <hr class="my-4">
 
-     <p v-for="(answer, index) in answers" :key="answer">
-
+     <p v-for="(answer, index) in answers" :key="index">
+       {{ answer }}
      </p>
 
      <b-button variant="primary" href="#">Submit</b-button>
@@ -26,9 +26,14 @@ export default {
   },
   computed: {
     answers() {
-      let answers = [...currentQuestion.incorrect_answers]
-      return answers.push(currentQuestion.correct_answer )
+      let answers = [...this.currentQuestion.incorrect_answers]
+      answers.push(this.currentQuestion.correct_answer)
+      return answers
     }
-  }
+  },
+mounted() {
+  // eslint-disable-next-line
+  console.log(this.currentQuestion)
+}
 }
 </script>
