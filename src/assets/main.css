@@ -48,7 +48,7 @@
 
 .jumbotron {
   background: transparent;
-  border: 1px solid lightgray;
+  border: none;
 }
 
 .btn {
