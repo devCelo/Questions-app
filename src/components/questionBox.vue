@@ -2,7 +2,7 @@
 <template>
   <div class="question-box-container">
     <b-jumbotron>
-       <template slot="lead">
+       <template slot="lead" v-if="currentQuestion">
          {{ currentQuestion.question}}
        </template>
 
@@ -11,7 +11,10 @@
           v-for="(answer, index) in answers"
           :key="index"
           @click="selectedAnswer(index)"
-          :class="[selectedIndex === index ? 'selected' : '' ]"
+          :class="[
+          !answered && selectedIndex === index ? 'selected' :
+          answered && correctIndex === index ? correct : ''
+          ]"
           >
 
             {{ answer }}
@@ -43,7 +46,8 @@ export default {
   data() {
     return {
       selectedIndex: null,
-      shuffledAnswers: []
+      shuffledAnswers: [],
+      answered: null,
     }
   },
   computed: {
@@ -66,7 +70,7 @@ export default {
     selectedAnswer(index) {
       this.selectedIndex = index
     },
-    submitAnswer() {
+    submitAnswer: async function () {
       let isCorrect = false
 
       if(this.selectedIndex == this.correctIndex) {

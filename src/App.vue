@@ -1,12 +1,33 @@
+<template>
+  <div id="app">
+    <Header
+      :numCorrect="numCorrect"
+      :numTotal="numTotal"
+    />
+
+    <b-container class="bv-example-row">
+      <b-row>
+        <b-col>
+          <QuestionBox
+            v-if="questions.length"
+            :currentQuestion="questions[index]"
+            :next="next"
+            :increment="increment"
+          />
+        </b-col>
+      </b-row>
+    </b-container>
+  </div>
+</template>
+
 <script>
 import Header from './components/header.vue'
-import questionBox from './components/questionBox.vue'
-
+import QuestionBox from './components/questionBox.vue'
 export default {
   name: 'app',
   components: {
     Header,
-    questionBox
+    QuestionBox
   },
   data() {
     return {
@@ -41,28 +62,6 @@ mounted: function() {
 }
 }
 </script>
-
-<template>
-  <div id="app">
-    <Header
-    :numCorrect="numCorrect"
-    :numTotal="numTotal"
-    />
-    <b-container>
-      <b-row>
-        <b-col>
-          <questionBox
-          :currentQuestion="questions[index]"
-          :next="next"
-          :increment="increment"
-          />
-        </b-col>
-      </b-row>
-    </b-container>
-  </div>
-</template>
-
-
 
 <style>
 #app {
