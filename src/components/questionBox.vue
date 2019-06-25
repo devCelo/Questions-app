@@ -13,7 +13,7 @@
           @click="selectedAnswer(index)"
           :class="[
           !answered && selectedIndex === index ? 'selected' :
-          answered && correctIndex === index ? correct : ''
+          answered && correctIndex === index ? 'correct' : ''
           ]"
           >
 
@@ -47,7 +47,7 @@ export default {
     return {
       selectedIndex: null,
       shuffledAnswers: [],
-      answered: null,
+      answered: false
     }
   },
   computed: {
@@ -70,17 +70,18 @@ export default {
     selectedAnswer(index) {
       this.selectedIndex = index
     },
-    submitAnswer: async function () {
+    submitAnswer () {
       let isCorrect = false
 
       if(this.selectedIndex == this.correctIndex) {
         isCorrect = true
       }
-      this.increment(isCorrect)
+      this.increment(isCorrect);
     },
     shuffleAnswers() {
       let answers = [...this.currentQuestion.incorrect_answers, this.currentQuestion.correct_answer]
       this.shuffledAnswers = _.shuffle(answers)
+      this.correctIndex = this.shuffledAnswers.indexOf(this.currentQuestion.correct_answer)
     }
   }
 }
