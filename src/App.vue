@@ -23,6 +23,7 @@
 <script>
 import Header from './components/header.vue'
 import QuestionBox from './components/questionBox.vue'
+
 export default {
   name: 'app',
   components: {
